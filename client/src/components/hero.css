@@ -22,13 +22,12 @@
   background-size: 200% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: metallic-shimmer 6s linear infinite; /* slower */
+  animation: metallic-shimmer 10s linear infinite;
 }
 
 /* General Styling */
 
 .hero-container {
-  background-color: #000;
   padding: 80px 20px;
   color: #eee;
   font-family: "Ubuntu", sans-serif;
@@ -49,8 +48,7 @@
   background-size: 200% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: metallic-shimmer 6s linear infinite; /* slower */
-
+  animation: metallic-shimmer 6s linear infinite;
   padding: 6px 16px;
   border-radius: 999px;
   font-weight: bold;
@@ -59,14 +57,10 @@
 }
 
 .hero-title {
-  font-size: 48px;
+  font-size: 4rem;
   font-weight: bold;
   margin-bottom: 16px;
   color: #eee;
-}
-
-.gradient-text {
-  /* Replaced with metallic-gradient class usage in JSX */
 }
 
 /* Subtitles and paragraph text */
@@ -90,13 +84,20 @@
   color: black;
   -webkit-text-fill-color: unset;
   border-color: white;
-  animation: metallic-shimmer 6s linear infinite; /* slower */
   padding: 12px 24px;
   border-radius: 999px;
   font-weight: 600;
   cursor: pointer;
+  text-decoration: none;
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
+
+.btn-primary:hover,
+.btn-secondary:hover {
+  background: linear-gradient(90deg, #ffffff, #e0e0e0); /* Subtle hover effect */
+  border-color: #f0f0f0;
+}
+
 
 /* Hero Stats */
 .hero-stats {
@@ -104,10 +105,12 @@
   justify-content: center;
   gap: 48px;
   margin-top: 60px;
+  flex-wrap: wrap; /* allow wrapping on smaller screens */
 }
 
 .stat-card {
   text-align: center;
+  min-width: 120px; /* avoid too small */
 }
 
 .stat-value {
@@ -120,9 +123,6 @@
   color: #aaa;
   margin-top: 4px;
 }
-
-/* Remove old colored text classes */
-/* You can still add grayscale or white shades as needed */
 
 /* Tech Section */
 .tech-section {
@@ -151,13 +151,14 @@
 
 .tech-card {
   background: linear-gradient(135deg, #222, #444);
-  border: 1px solid #666;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+border: none;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
   padding: 20px;
   border-radius: 16px;
   width: 180px;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
   color: #eee;
+  flex-shrink: 0; /* avoid shrinking */
 }
 
 .tech-card:hover {
@@ -170,22 +171,11 @@
   margin-bottom: 10px;
   border-radius: 12px;
   padding: 10px;
-
-  background: linear-gradient(
-    90deg,
-    #000000,
-    #bfbfbf,
-    #ffffff,
-    #bfbfbf,
-    #000000
-  );
+  background: #bfbfbf;
   background-size: 200% 100%;
-  animation: metallic-shimmer 6s linear infinite; /* slower */
-
   color: transparent;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-
   display: inline-block;
 }
 
@@ -227,7 +217,7 @@
 
 .why-card {
   background: linear-gradient(135deg, #222, #444);
-  border: 1px solid #666;
+  border: none;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
   padding: 20px;
   border-radius: 16px;
@@ -247,18 +237,9 @@
   padding: 10px;
   border-radius: 12px;
   display: inline-block;
-
-  background: linear-gradient(
-    90deg,
-    #000000,
-    #bfbfbf,
-    #ffffff,
-    #bfbfbf,
-    #000000
-  );
+  background: #cfcfcf;
   background-size: 200% 100%;
-  animation: metallic-shimmer 6s linear infinite; /* slower */
-
+  animation: metallic-shimmer 6s linear infinite;
   color: transparent;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -273,4 +254,371 @@
 .why-card p {
   font-size: 14px;
   color: #bbb;
+}
+
+/* Daddy & float divs */
+.daddy {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 60px;
+}
+
+.float-div {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 40%; /* Reverted to original width */
+  min-width: 280px;
+}
+
+.left-div {
+  width: 55%; /* Reverted to original width */
+  min-width: 280px;
+}
+
+.float {
+  background-color: #1e1e1e;
+  color: #eee;
+  padding: 0.75rem 1.2rem;
+    border: none;
+  border-radius: 12px;
+  font-family: monospace;
+  box-shadow: inset 0 0 3px #444, 0 10px 15px rgba(0, 0, 0, 0.3);
+  word-wrap: break-word;
+  animation: floatAround 5s ease-in-out infinite;
+}
+
+/* Ensure code within pre tag is scrollable horizontally if too wide */
+.float pre {
+  overflow-x: auto; /* Allows horizontal scrolling for overflowing code */
+  white-space: pre; /* Preserves whitespace but allows horizontal scroll */
+}
+
+/* Independent floating for each .float div */
+/* Assuming your HTML has three .float elements inside one .float-div as per your JSX */
+.float:nth-child(1) {
+  animation-delay: 0s;
+  animation-duration: 5s;
+}
+
+.float:nth-child(2) {
+  animation-delay: 1.5s; /* Start later */
+  animation-duration: 6s; /* Different duration */
+}
+
+.float:nth-child(3) {
+  animation-delay: 3s; /* Start even later */
+  animation-duration: 5.5s; /* Another different duration */
+}
+
+@keyframes floatAround {
+  0% {
+    transform: translate(0px, 0px);
+  }
+  25% {
+    transform: translate(8px, -8px);
+  }
+  50% {
+    transform: translate(-8px, 8px);
+  }
+  75% {
+    transform: translate(10px, -10px);
+  }
+  100% {
+    transform: translate(0px, 0px);
+  }
+}
+
+/* Make sections auto height and allow scrolling */
+.section {
+  min-height: 100vh;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  scroll-snap-align: start;
+  padding: 20px;
+  box-sizing: border-box;
+  position: relative;
+  /* Remove fixed height to allow stacking and scrolling */
+}
+
+/* Remove scroll-snap-type for body to allow natural scrolling */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  /* scroll-snap-type: y mandatory; */ /* Remove or comment out this line */
+  overflow-y: auto;
+}
+
+/* Optional: Give each section a background for visibility */
+.section-1,
+.section-2,
+.section-3,
+.section-4 { /* Added section-4 to ensure it has a background if needed */
+  color: white;
+}
+
+/* ===== Responsive Styles ===== */
+@media (max-width: 1024px) {
+  .hero-title {
+    font-size: 3rem;
+  }
+
+  .hero-subtitle {
+    font-size: 16px;
+    margin-bottom: 32px;
+  }
+
+  .hero-buttons {
+    gap: 12px;
+    margin-bottom: 48px;
+  }
+
+  .hero-stats {
+    gap: 32px;
+  }
+
+  .tech-card {
+    width: 140px;
+  }
+
+  .tech-title,
+  .why-title {
+
+    font-size: 28px;
+  }
+
+  .why-subtitle,
+  .tech-subtitle {
+    font-size: 14px;
+    margin-bottom: 32px;
+  }
+
+  .daddy {
+    gap: 1.5rem;
+    flex-direction: column; /* Force stacking on smaller screens */
+    align-items: center; /* Center items when stacked */
+  }
+
+  .float-div,
+  .left-div {
+    width: 100%; /* Make them full width when stacked */
+    min-width: unset; /* Remove min-width constraint when full width */
+  }
+
+  .why-grid {
+    gap: 16px;
+    max-width: 100vw;
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
+  .why-card {
+    padding: 16px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 14px;
+    margin-bottom: 28px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    padding: 12px 0;
+  }
+
+  .hero-stats {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .tech-card {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .tech-icons {
+    justify-content: center;
+  }
+
+  .why-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    max-width: 100vw;
+    padding: 0 8px;
+  }
+  .why-card {
+    padding: 12px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-container {
+    padding: 60px 10px; /* Reduced padding on very small screens */
+  }
+
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 13px;
+    margin-bottom: 24px;
+  }
+
+  .badge {
+    padding: 4px 12px;
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+
+  .tech-title,
+  .why-title {
+    font-size: 24px;
+  }
+
+  .why-subtitle,
+  .tech-subtitle {
+    font-size: 13px;
+    margin-bottom: 24px;
+  }
+
+  .why-card p,
+  .tech-card p {
+    font-size: 13px;
+  }
+
+  .stat-value {
+    font-size: 24px;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    font-size: 14px;
+    padding: 10px 0; /* Slightly reduce button padding */
+  }
+
+  /* Ensure float divs and left div fully use available space */
+  .float-div,
+  .left-div {
+    min-width: unset; /* Ensure no min-width holds them back on tiny screens */
+    width: 100%; /* Explicitly ensure full width */
+    padding: 0 10px; /* Add some horizontal padding inside to prevent content touching edges */
+    box-sizing: border-box; /* Include padding in width */
+  }
+
+  .float {
+    padding: 0.5rem 0.8rem; /* Reduce padding for the float elements */
+    font-size: 0.9em; /* Slightly smaller font for float content */
+  }
+
+  .why-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    max-width: 100vw;
+    padding: 0 4px;
+  }
+  .why-card {
+    padding: 8px;
+    font-size: 11px;
+  }
+  .why-card h3 {
+    font-size: 13px;
+  }
+  .why-icon {
+    font-size: 18px;
+    padding: 5px;
+  }
+}
+
+@media (max-width: 375px) { /* iPhone SE / older Androids often around 320-375px */
+  .hero-title {
+    font-size: 1.8rem; /* Even smaller title */
+  }
+  .hero-subtitle {
+    font-size: 12px; /* Even smaller subtitle */
+  }
+  .badge {
+    font-size: 12px;
+    padding: 3px 10px;
+  }
+  .stat-value {
+    font-size: 22px;
+  }
+  .tech-title,
+  .why-title {
+    font-size: 22px;
+  }
+  .tech-card,
+  .why-card {
+    padding: 15px; /* Reduce card padding */
+  }
+  .tech-card h3,
+  .why-card h3 {
+    font-size: 16px;
+  }
+  .tech-card p,
+  .why-card p {
+    font-size: 12px;
+  }
+  .float {
+    font-size: 0.8em; /* Further reduce font for float content */
+    padding: 0.4rem 0.6rem; /* Further reduce padding */
+  }
+}
+
+@media (max-width: 320px) { /* Target 320px specifically */
+  .hero-title {
+    font-size: 1.6rem;
+  }
+  .hero-subtitle {
+    font-size: 11px;
+  }
+  .btn-primary,
+  .btn-secondary {
+    font-size: 13px;
+    padding: 8px 0;
+  }
+  .stat-value {
+    font-size: 20px;
+  }
+  .tech-title,
+  .why-title {
+    font-size: 20px;
+  }
+  .why-card h3,
+  .tech-card h3 {
+    font-size: 15px;
+  }
+  .why-card p,
+  .tech-card p {
+    font-size: 11px;
+  }
+  .float {
+    font-size: 0.75em;
+    padding: 0.3rem 0.5rem;
+  }
+  .hero-container {
+    padding: 40px 5px; /* Minimal padding */
+  }
 }

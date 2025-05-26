@@ -13,16 +13,23 @@ const Navbar = () => {
   }, []);
 
   const styles = {
-    navbar: {
-      display: 'flex',
-      justifyContent: 'space-between', 
-      alignItems: 'center',
-      padding: '10px 20px',
-      color: 'white',
-      borderBottom: '1px solid rgba(192, 192, 192, 0.32)',
-      flexWrap: 'nowrap',
-      position: 'relative',
-    },
+navbar: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: '10px 20px',
+    color: 'white',
+    borderBottom: '1px solid rgba(192, 192, 192, 0.32)',
+    flexWrap: 'nowrap',
+    position: 'fixed',
+    top: '0',
+    left: '0',
+    width: '100%',
+    transition: 'top 0.3s ease',
+    zIndex: 1000,
+    backgroundColor: 'rgb(24, 24, 24)',
+    boxSizing: 'border-box',  // include padding inside width
+  },
     logo: {
       fontSize: '24px',
       fontWeight: 'bold',
@@ -30,17 +37,19 @@ const Navbar = () => {
       textDecoration: 'none',
       transition: 'color 0.3s',
     },
-    navLinks: {
-      display: 'flex',
-      gap: '20px',
-      flexWrap: 'nowrap',
-    },
-    link: {
-      color: 'white',
-      textDecoration: 'none',
-      padding: '8px 12px',
-      transition: 'background-color 0.3s',
-    },
+   navLinks: {
+    display: 'flex',
+    gap: '20px',
+    flexWrap: 'nowrap',
+    marginRight: '10px',  // small right margin to prevent clipping
+  },
+  link: {
+    color: 'white',
+    textDecoration: 'none',
+    padding: '8px 12px',
+    transition: 'background-color 0.3s',
+    flexShrink: 0,   // prevent shrinking so button always fully visible
+  },
   };
 
   return (
