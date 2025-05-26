@@ -7,7 +7,7 @@ class MatchCreateRequest(BaseModel):
 
 class Match(BaseModel):
     match_id: str
-    player1: UserPublic
+    player1: Optional[UserPublic] = None  # Can be None if no match yet
     player2: Optional[UserPublic] = None  # Can be None if no match yet
     problem_id: Optional[str] = None       # Can be None if not assigned yet
     status: str  # pending, active, finished
