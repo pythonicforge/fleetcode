@@ -1,0 +1,276 @@
+/* hero.css */
+
+/* --- Metallic Gradient Animation --- */
+@keyframes metallic-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.metallic-gradient {
+  background: linear-gradient(
+    90deg,
+    #000000,
+    #bfbfbf,
+    #ffffff,
+    #bfbfbf,
+    #000000
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: metallic-shimmer 6s linear infinite; /* slower */
+}
+
+/* General Styling */
+
+.hero-container {
+  background-color: #000;
+  padding: 80px 20px;
+  color: #eee;
+  font-family: "Ubuntu", sans-serif;
+  text-align: center;
+}
+
+/* Badge with metallic text */
+.badge {
+  color: transparent;
+  background: linear-gradient(
+    90deg,
+    #000000,
+    #bfbfbf,
+    #ffffff,
+    #bfbfbf,
+    #000000
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: metallic-shimmer 6s linear infinite; /* slower */
+
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-weight: bold;
+  display: inline-block;
+  margin-bottom: 24px;
+}
+
+.hero-title {
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 16px;
+  color: #eee;
+}
+
+.gradient-text {
+  /* Replaced with metallic-gradient class usage in JSX */
+}
+
+/* Subtitles and paragraph text */
+.hero-subtitle {
+  font-size: 18px;
+  color: #ccc;
+  margin-bottom: 40px;
+}
+
+/* Buttons with metallic text and border */
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 60px;
+}
+
+.btn-primary,
+.btn-secondary {
+  background: linear-gradient(90deg, #bfbfbf, #ffffff);
+  color: black;
+  -webkit-text-fill-color: unset;
+  border-color: white;
+  animation: metallic-shimmer 6s linear infinite; /* slower */
+  padding: 12px 24px;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Hero Stats */
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  margin-top: 60px;
+}
+
+.stat-card {
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 28px;
+  font-weight: bold;
+  color: #eee;
+}
+
+.stat-label {
+  color: #aaa;
+  margin-top: 4px;
+}
+
+/* Remove old colored text classes */
+/* You can still add grayscale or white shades as needed */
+
+/* Tech Section */
+.tech-section {
+  margin-top: 100px;
+}
+
+.tech-title {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #eee;
+}
+
+.tech-subtitle {
+  color: #aaa;
+  font-size: 16px;
+  margin-bottom: 40px;
+}
+
+.tech-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+}
+
+.tech-card {
+  background: linear-gradient(135deg, #222, #444);
+  border: 1px solid #666;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 16px;
+  width: 180px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  color: #eee;
+}
+
+.tech-card:hover {
+  border-color: #bbb;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.tech-icon {
+  font-size: 32px;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  padding: 10px;
+
+  background: linear-gradient(
+    90deg,
+    #000000,
+    #bfbfbf,
+    #ffffff,
+    #bfbfbf,
+    #000000
+  );
+  background-size: 200% 100%;
+  animation: metallic-shimmer 6s linear infinite; /* slower */
+
+  color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  display: inline-block;
+}
+
+.tech-card h3 {
+  margin: 10px 0 6px;
+  color: #eee;
+}
+
+.tech-card p {
+  color: #bbb;
+  font-size: 14px;
+}
+
+/* Why Choose Section */
+.why-section {
+  margin-top: 100px;
+}
+
+.why-title {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #eee;
+}
+
+.why-subtitle {
+  color: #aaa;
+  font-size: 16px;
+  margin-bottom: 40px;
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.why-card {
+  background: linear-gradient(135deg, #222, #444);
+  border: 1px solid #666;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 16px;
+  text-align: left;
+  color: #eee;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.why-card:hover {
+  border-color: #bbb;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.why-icon {
+  font-size: 32px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 12px;
+  display: inline-block;
+
+  background: linear-gradient(
+    90deg,
+    #000000,
+    #bfbfbf,
+    #ffffff,
+    #bfbfbf,
+    #000000
+  );
+  background-size: 200% 100%;
+  animation: metallic-shimmer 6s linear infinite; /* slower */
+
+  color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.why-card h3 {
+  font-size: 18px;
+  margin-bottom: 6px;
+  color: #eee;
+}
+
+.why-card p {
+  font-size: 14px;
+  color: #bbb;
+}
