@@ -13,6 +13,29 @@ async def get_user_by_id(user_id: str) -> UserPublic:
     data = supabase.table("profiles").select("*").eq("id", user_id).single().execute().data
     return UserPublic(**data)
 
+async def assign_problem_to_match(match_id: str, p1_rating: int, p2_rating: int) -> str:
+    min_r = min(p1_rating, p2_rating)
+    max_r = max(p1_rating, p2_rating)
+
+    # Get 1 random problem where problem.min_rating <= min_r and problem.max_rating >= max_r
+    result = (
+        supabase.table("problems")
+        .select("*")
+        .lte("min_rating", min_r)
+        .gte("max_rating", max_r)
+        .limit(10)  # Grab 10 and choose randomly from them
+        .execute()
+    )
+
+    problems = result.data
+    if not problems:
+        raise Exception("No suitable problem found.")
+
+    import random
+    problem = random.choice(problems)
+
+    return problem["id"]
+
 async def find_match(user_id: str) -> Match | None:
     user = await get_user_by_id(user_id)
     user_rating = user.rating
@@ -26,12 +49,18 @@ async def find_match(user_id: str) -> Match | None:
 
             # Create match object
             match_id = str(uuid.uuid4())
+
+            problem_id = await assign_problem_to_match(match_id, user.rating, opponent.rating)
+
+            print(problem_id)
+
+            
             match_data = {
                 "match_id": match_id,
                 "player1_id": user.id,
                 "player2_id": opponent.id,
                 "status": "active",
-                "problem_id": str(uuid.uuid1()),  # Pick this later based on rating
+                "problem_id": problem_id,  # Pick this later based on rating
                 "time_limit": 600,
             }
 
@@ -42,7 +71,7 @@ async def find_match(user_id: str) -> Match | None:
                 match_id=match_id,
                 player1=user,
                 player2=opponent,
-                problem_id=None,
+                problem_id=problem_id,
                 status="active",
                 time_limit=600
             )
