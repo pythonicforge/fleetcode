@@ -2,6 +2,7 @@ from fastapi import APIRouter, WebSocket, WebSocketDisconnect
 from utils.connection_manager import ConnectionManager
 from services.supabase_client import supabase
 from schemas.match import Match
+from schemas.status import StatusUpdate
 import asyncio
 
 router = APIRouter()
@@ -57,6 +58,14 @@ async def websocket_endpoint(websocket: WebSocket, match_id: str):
     try:
         while True:
             data = await websocket.receive_json()
+            msg_type = data.get("type")
+            if msg_type == "status_update":
+                status = StatusUpdate(**data)
+                await manager.broadcast(match_id, {
+                    "type": "status_update",
+                    "user_id": status.user_id,
+                    "status": status.status
+                })
             await manager.broadcast(match_id, data, sender=websocket)
     except WebSocketDisconnect:
         manager.disconnect(match_id, websocket)
