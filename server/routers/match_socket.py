@@ -19,8 +19,7 @@ async def get_match_by_id(match_id: str) -> Match:
     )
     if not data:
         raise ValueError(f"No match found with match_id: {match_id}")
-    # Log missing fields for debugging
-    required_fields = {"match_id", "time_limit", "player1", "player2"}  # Update as needed
+    required_fields = {"match_id", "time_limit", "player1", "player2"}
     missing_fields = required_fields - data.keys()
     if missing_fields:
         print(f"Warning: Missing fields in match data: {missing_fields}")
@@ -51,7 +50,6 @@ async def start_timer(match_id: str):
 async def websocket_endpoint(websocket: WebSocket, match_id: str):
     count = await manager.connect(match_id, websocket)
 
-    # ✅ Start timer when both players are in
     if count == 2:
         asyncio.create_task(start_timer(match_id))
 

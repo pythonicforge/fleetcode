@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from routers import match_socket
-from routers import user, match, submission, judge  # Add others later
+from routers import user, match, submission, judge
 
 app = FastAPI()
 

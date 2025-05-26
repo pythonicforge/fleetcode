@@ -1,5 +1,3 @@
-# Code submission schema (user ID, code, verdict)
-
 from pydantic import BaseModel
 
 class CodeSubmission(BaseModel):
@@ -9,7 +7,7 @@ class CodeSubmission(BaseModel):
     code: str
 
 class SubmissionResult(BaseModel):
-    status: str  # Accepted, Wrong Answer, etc.
+    status: str
     time: float
     memory: int
     output: str
