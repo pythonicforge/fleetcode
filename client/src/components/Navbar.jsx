@@ -54,7 +54,7 @@ navbar: {
 
   return (
     <nav style={styles.navbar}>
-      <Link to="/hero" style={styles.logo}>FleetCode</Link>
+      <Link to="/" style={styles.logo}>FleetCode</Link>
       <div style={styles.navLinks}>
         <Link to="/auth" style={styles.link}>Login/SignUp</Link>
       </div>

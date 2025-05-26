@@ -10,7 +10,6 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Hero />} />
-        <Route path="/hero" element={<Hero />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/auth" element={<Signuplogin />} />
 
