@@ -1,9 +1,10 @@
 import { Routes, Route } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
-import Signuplogin from './components/Signuplogin';
 import Hero from './components/Hero';
-import './App.css'; 
 import Navbar from './components/Navbar';
+import Signuplogin from './components/Signuplogin';
+import './App.css';
+
 function App() {
   return (
     <>
@@ -13,11 +14,9 @@ function App() {
         <Route path="/hero" element={<Hero />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/auth" element={<Signuplogin />} />
-
       </Routes>
     </>
   );
 }
 
 export default App;
-
