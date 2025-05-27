@@ -26,7 +26,7 @@ const Navbar = () => {
               <span>Forum</span>
             </a>
           </div>
-          
+
           <div className="navbar__user-menu">
             <div className="navbar__user-avatar">
               <User className="navbar__avatar-icon" />
@@ -42,5 +42,5 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+
 
