@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Sword, Clock, User } from 'lucide-react';
-import './../styles/battlequeue.css';
+import './BattleQueue.css';
 
 const BattleQueue = () => {
   const [isQueuing, setIsQueuing] = useState(false);
@@ -49,7 +49,7 @@ const BattleQueue = () => {
       <div className="battle-queue__content">
         <h2 className="battle-queue__title">
           <Sword className="battle-queue__title-icon" />
-          <span>1v1 Battle Arena</span>
+          <span className="battle-queue__title-text">1v1 Battle Arena</span>
         </h2>
         
         {!isQueuing && !matchFound && (

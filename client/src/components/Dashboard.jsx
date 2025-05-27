@@ -1,15 +1,15 @@
 import React from 'react';
-import Navbar from './../Navbar/Navbar';
+// import Navbar from './dashboard/Navbar';
 import UserProfile from './dashboard/UserProfile';
 import BattleQueue from './dashboard/BattleQueue';
 import RecentBattles from './dashboard/RecentBattles';
 import ProblemRecommendations from './dashboard/ProblemRecommendations';
-import './styles/dashboard.css';
+import './Dashboard.css';
 
 const Dashboard = () => {
   return (
     <div className="dashboard">
-      <Navbar />
+      {/* <Navbar /> */}
       
       <div className="dashboard__container">
         <div className="dashboard__grid">

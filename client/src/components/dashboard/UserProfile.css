@@ -1,0 +1,340 @@
+.user-profile {
+  background: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.user-profile:hover {
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.user-profile__header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.user-profile__avatar-container {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.user-profile__avatar {
+  width: 3.5rem;
+  height: 3.5rem;
+  background: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-profile__avatar-initials {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #000000;
+}
+
+.user-profile__online-indicator {
+  position: absolute;
+  bottom: -0.25rem;
+  right: -0.25rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  background: linear-gradient(135deg, #10b981, #059669);
+  border-radius: 50%;
+  border: 2px solid #000000;
+  animation: pulse 2s infinite;
+}
+
+.user-profile__info {
+  min-width: 0;
+  flex: 1;
+}
+
+.user-profile__name {
+  font-size: 1.125rem;
+  font-weight: bold;
+  color: #ffffff;
+  margin: 0 0 0.25rem 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+.user-profile__badges {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.user-profile__elite-badge {
+  background: #ffffff;
+  color: #000000;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.user-profile__rank-text {
+  color: #aaa;
+  font-size: 0.875rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.user-profile__stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.user-profile__stat-card {
+  background: #111111;
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  text-align: center;
+  transition: all 0.2s;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.user-profile__stat-card:hover {
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.2);
+  background: #1a1a1a;
+}
+
+.user-profile__stat-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+}
+
+.user-profile__stat-icon svg {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.user-profile__stat-value {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 0.25rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+.user-profile__stat-label {
+  font-size: 0.75rem;
+  color: #aaa;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+.user-profile__edit-btn {
+  width: 100%;
+  background: #ffffff;
+  color: #000000;
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.875rem;
+}
+
+.user-profile__edit-btn:hover {
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  transform: scale(1.02);
+  background: #e0e0e0;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .user-profile__stats-grid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  
+  .user-profile__stat-card {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-align: left;
+    padding: 0.5rem 0.75rem;
+  }
+  
+  .user-profile__stat-icon {
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+  
+  .user-profile__stat-value {
+    margin-bottom: 0;
+    font-size: 1.125rem;
+  }
+  
+  .user-profile__stat-label {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .user-profile {
+    padding: 0.75rem;
+  }
+  
+  .user-profile__header {
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  
+  .user-profile__avatar {
+    width: 3rem;
+    height: 3rem;
+  }
+  
+  .user-profile__avatar-initials {
+    font-size: 1.125rem;
+  }
+  
+  .user-profile__online-indicator {
+    width: 1rem;
+    height: 1rem;
+  }
+  
+  .user-profile__name {
+    font-size: 1rem;
+  }
+  
+  .user-profile__elite-badge {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.4rem;
+  }
+  
+  .user-profile__rank-text {
+    font-size: 0.8rem;
+  }
+  
+  .user-profile__stats-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .user-profile__stat-card {
+    display: block;
+    text-align: center;
+    padding: 0.5rem;
+  }
+  
+  .user-profile__stat-icon {
+    margin-bottom: 0.25rem;
+  }
+  
+  .user-profile__stat-icon svg {
+    width: 1rem;
+    height: 1rem;
+  }
+  
+  .user-profile__stat-value {
+    font-size: 1rem;
+    margin-bottom: 0.125rem;
+  }
+  
+  .user-profile__stat-label {
+    font-size: 0.65rem;
+  }
+  
+  .user-profile__edit-btn {
+    padding: 0.625rem 0.75rem;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .user-profile {
+    padding: 0.5rem;
+  }
+  
+  .user-profile__header {
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .user-profile__avatar {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  
+  .user-profile__avatar-initials {
+    font-size: 1rem;
+  }
+  
+  .user-profile__name {
+    font-size: 0.9rem;
+  }
+  
+  .user-profile__elite-badge {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.3rem;
+  }
+  
+  .user-profile__rank-text {
+    font-size: 0.75rem;
+  }
+  
+  .user-profile__stats-grid {
+    gap: 0.375rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .user-profile__stat-card {
+    padding: 0.375rem;
+  }
+  
+  .user-profile__stat-value {
+    font-size: 0.9rem;
+  }
+  
+  .user-profile__stat-label {
+    font-size: 0.6rem;
+  }
+  
+  .user-profile__edit-btn {
+    padding: 0.5rem;
+    font-size: 0.75rem;
+  }
+}
