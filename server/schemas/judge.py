@@ -6,9 +6,11 @@ class JudgeRequest(BaseModel):
     language_id: int
     stdin: str
 
+
 class JudgeResponse(BaseModel):
-    stdout: str
-    stderr: str
-    status: dict
-    time: Optional[str]
-    memory: Optional[int]
+    stdout: Optional[str]
+    stderr: Optional[str]
+    returncode: Optional[int]
+    status: Optional[str] = None
+    time: Optional[str] = None
+    memory: Optional[str] = None
