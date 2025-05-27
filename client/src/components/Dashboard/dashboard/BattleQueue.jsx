@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Sword, Clock, User } from 'lucide-react';
-import '../../styles/battlequeue.css';
+import './../styles/battlequeue.css';
 
 const BattleQueue = () => {
   const [isQueuing, setIsQueuing] = useState(false);

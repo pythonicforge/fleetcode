@@ -1,6 +1,6 @@
 import React from 'react';
 import { Sword, Trophy, MessageCircle, User } from 'lucide-react';
-import '../../styles/navbar.css';
+import './../styles/navbar.css';
 
 const Navbar = () => {
   return (
