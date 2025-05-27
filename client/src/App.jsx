@@ -1,8 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
-import Dashboard from './components/Dashboard';
-import Hero from './components/Hero';
-import Navbar from './components/Navbar';
-import Signuplogin from './components/Signuplogin';
+import Dashboard from './components/Dashboard/Dashboard';
+import Hero from './components/Hero/Hero';
+import Navbar from './components/Navbar/Navbar';
+import Signuplogin from './components/Auth/Signuplogin';
 import './App.css';
 
 function App() {
