@@ -1,0 +1,42 @@
+/* Navbar.css */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  color: white;
+  border-bottom: 1px solid rgba(192, 192, 192, 0.32);
+  flex-wrap: nowrap;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transition: top 0.3s ease;
+  z-index: 1000;
+  background-color: rgb(24, 24, 24);
+  box-sizing: border-box;
+}
+
+.navbar-logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 20px;
+  flex-wrap: nowrap;
+  margin-right: 10px;
+}
+
+.navbar-link {
+  color: white;
+  text-decoration: none;
+  padding: 8px 12px;
+  transition: background-color 0.3s;
+  flex-shrink: 0;
+}
