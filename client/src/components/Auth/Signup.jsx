@@ -110,12 +110,6 @@ export default function Signup() {
       >
         Sign up with Google
       </button>
-      <button
-        onClick={() => handleOAuthSignup('github')}
-        className="auth-btn-oauth auth-btn-github"
-      >
-        Sign up with GitHub
-      </button>
       <p className="auth-or">
         Already have an account?{' '}
         <Link to="/login" className="auth-link">
