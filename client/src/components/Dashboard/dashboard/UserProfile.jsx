@@ -1,6 +1,6 @@
 import React from 'react';
 import { Trophy, TrendingUp, Target, Flame } from 'lucide-react';
-import '../../styles/userprofile.css';
+import './../styles/userprofile.css';
 
 const UserProfile = () => {
   return (

@@ -4,7 +4,7 @@ import UserProfile from './dashboard/UserProfile';
 import BattleQueue from './dashboard/BattleQueue';
 import RecentBattles from './dashboard/RecentBattles';
 import ProblemRecommendations from './dashboard/ProblemRecommendations';
-import '../styles/dashboard.css';
+import './styles/dashboard.css';
 
 const Dashboard = () => {
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import { History, Trophy, X } from 'lucide-react';
-import '../../styles/recentbattles.css';
+import './../styles/recentbattles.css';
 
 const RecentBattles = () => {
   const battles = [
