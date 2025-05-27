@@ -7,9 +7,8 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="navbar__container">
         <div className="navbar__content">
-          <div className="navbar__logo">
-            <div className="navbar__logo-icon">
-              <Sword className="navbar__logo-sword" />
+          
+              
             </div>
             <span className="navbar__logo-text">FleetCode</span>
           </div>
@@ -37,8 +36,8 @@ const Navbar = () => {
               <div className="navbar__user-rank">Rank #42</div>
             </div>
           </div>
-        </div>
-      </div>
+        
+      
     </nav>
   );
 };

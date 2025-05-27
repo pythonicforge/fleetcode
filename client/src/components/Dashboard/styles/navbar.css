@@ -17,7 +17,7 @@
 }
 
 .navbar__container {
-  max-width: 100%;
+  max-width: 50%;
   margin: 0;
   padding: 0 2rem;
 }
@@ -26,7 +26,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 4rem;
+  height: 1rem;
 }
 
 .navbar__logo {
@@ -58,9 +58,11 @@
 }
 
 .navbar__logo-text {
-  font-size: 1.5rem;
+  font-size: 24px;
   font-weight: bold;
-  color: #ffffff;
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
 }
 
 .navbar__links {
