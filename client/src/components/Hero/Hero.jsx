@@ -1,10 +1,10 @@
 import './hero.css';
 import { Link } from 'react-router-dom';
-
+import Navbar from '../Navbar/Navbar';
 function Hero() {
   return (
     <div className="hero-container">
-
+      <Navbar />
       {/* Section 1 */}
       <section className="section section-1">
         
@@ -20,7 +20,7 @@ function Hero() {
               <span>win big</span>.
             </p>
             <div className="hero-buttons">
-              <Link to="/auth" className="btn-primary">
+              <Link to="/signup" className="btn-primary">
                 Get Started →
               </Link>
             </div>

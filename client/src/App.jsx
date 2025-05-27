@@ -1,18 +1,42 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Dashboard from './components/Dashboard/Dashboard';
 import Hero from './components/Hero/Hero';
 import Navbar from './components/Navbar/Navbar';
-import Signuplogin from './components/Auth/Signuplogin';
+import Login from './components/Auth/Login';
+import Signup from './components/Auth/Signup';
+import ProtectedRoute from './Protectedroute';
+import { useUser } from './components/client/Usercontext';
 import './App.css';
 
 function App() {
+  const { user } = useUser();
+
   return (
     <>
-      <Navbar />
       <Routes>
-        <Route path="/" element={<Hero />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/auth" element={<Signuplogin />} />
+<Route
+  path="/"
+  element={user ? <Navigate to="/dashboard" /> : <Hero />}
+/>
+
+        {/* Protect dashboard */}
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        {/* Redirect logged-in users away from login/signup */}
+        <Route
+          path="/login"
+          element={user ? <Navigate to="/dashboard" /> : <Login />}
+        />
+        <Route
+          path="/signup"
+          element={user ? <Navigate to="/dashboard" /> : <Signup />}
+        />
       </Routes>
     </>
   );

@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from './dashboard/Navbar';
+import Navbar from './../Navbar/Navbar';
 import UserProfile from './dashboard/UserProfile';
 import BattleQueue from './dashboard/BattleQueue';
 import RecentBattles from './dashboard/RecentBattles';
