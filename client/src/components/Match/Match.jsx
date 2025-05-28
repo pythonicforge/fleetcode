@@ -41,7 +41,11 @@ function Match() {
 
     ws.onopen = () => {
       console.log("WebSocket connected");
-      ws.send(JSON.stringify({ user_id: user.id }));
+      ws.send(JSON.stringify({
+        type: "status_update",
+        user_id: user.id,
+        status: "connected"
+      }));
       setStatus("connected");
     };
 
