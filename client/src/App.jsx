@@ -6,7 +6,6 @@ import Login from './components/Auth/Login';
 import Signup from './components/Auth/Signup';
 import ProtectedRoute from './Protectedroute';
 import { useUser } from './components/client/Usercontext';
-
 import './App.css';
 
 function App() {
@@ -29,7 +28,6 @@ function App() {
             </ProtectedRoute>
           }
         />
-        {/* Redirect logged-in users away from login/signup */}
         <Route
           path="/login"
           element={user ? <Navigate to="/dashboard" /> : <Login />}
@@ -38,6 +36,8 @@ function App() {
           path="/signup"
           element={user ? <Navigate to="/dashboard" /> : <Signup />}
         />
+
+        <Route path = "/code" element = {<CodeEditor />} />
       </Routes>
     </>
   );
