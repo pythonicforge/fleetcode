@@ -1,0 +1,253 @@
+.recent-battles {
+  background-color: #1e1e1e;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.recent-battles:hover {
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
+  transform: scale(-0.5px);
+}
+
+.recent-battles__header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.recent-battles__header h2 {
+  font-size: 1.125rem;
+  font-weight: bold;
+  color: #dfdfdf;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.recent-battles__history-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #b0b0b0;
+  flex-shrink: 0;
+}
+
+.recent-battles__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.recent-battles__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem;
+  background: #232323;
+  border-radius: 0.5rem;
+  transition: all 0.2s;
+  cursor: pointer;
+  min-width: 0;
+  gap: 0.75rem;
+}
+
+.recent-battles__item:hover {
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+  background: #2a2a2a;
+}
+
+.recent-battles__info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+  flex: 1;
+}
+
+.recent-battles__result {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  flex-shrink: 0;
+}
+
+.recent-battles__result-icon {
+  width: 1rem;
+  height: 1rem;
+  color: #000000;
+}
+
+.recent-battles__details {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+
+.recent-battles__opponent {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #dfdfdf;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+.recent-battles__problem {
+  font-size: 0.75rem;
+  color: #aaa;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+.recent-battles__meta {
+  text-align: right;
+  flex-shrink: 0;
+  min-width: 0;
+}
+
+.recent-battles__outcome {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #dfdfdf;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+.recent-battles__outcome--loss {
+  color: #aaa;
+}
+
+.recent-battles__time {
+  font-size: 0.65rem;
+  color: #aaa;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .recent-battles {
+    padding: 0.75rem;
+    margin-bottom: 30px;
+  }
+  
+  .recent-battles__header h2 {
+    font-size: 1rem;
+  }
+  
+  .recent-battles__history-icon {
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+  
+  .recent-battles__item {
+    padding: 0.625rem;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+  
+  .recent-battles__info {
+    gap: 0.5rem;
+  }
+  
+  .recent-battles__result {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+  
+  .recent-battles__result-icon {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+  
+  .recent-battles__meta {
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .recent-battles__opponent {
+    font-size: 0.8rem;
+  }
+  
+  .recent-battles__problem {
+    font-size: 0.7rem;
+  }
+  
+  .recent-battles__outcome {
+    font-size: 0.7rem;
+  }
+  
+  .recent-battles__time {
+    font-size: 0.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .recent-battles {
+    padding: 0.5rem;
+  }
+  
+  .recent-battles__header {
+    margin-bottom: 1rem;
+  }
+  
+  .recent-battles__header h2 {
+    font-size: 0.9rem;
+  }
+  
+  .recent-battles__history-icon {
+    width: 1rem;
+    height: 1rem;
+  }
+  
+  .recent-battles__item {
+    padding: 0.5rem;
+  }
+  
+  .recent-battles__result {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  
+  .recent-battles__result-icon {
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+  
+  .recent-battles__opponent {
+    font-size: 0.75rem;
+  }
+  
+  .recent-battles__problem {
+    font-size: 0.65rem;
+  }
+  
+  .recent-battles__outcome {
+    font-size: 0.65rem;
+  }
+  
+  .recent-battles__time {
+    font-size: 0.55rem;
+  }
+}

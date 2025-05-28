@@ -32,24 +32,24 @@ export default function CodeEditor() {
         width: "100vw",
         display: "flex",
         flexDirection: "column",
-        backgroundColor: "#1e1e1e", // Page background - OK
-        color: "#fff",             // Default page text color - OK for page, Monaco should override for editor
+        backgroundColor: "#1e1e1e", 
+        color: "#fff",             
       }}
     >
-      {/* CODE EDITOR WRAPPER */}
-      <div style={{ flex: 1 }}> {/* This wrapper is also fine */}
+      
+      <div style={{ flex: 1 }}> 
         <Editor
           height="100%"
           defaultLanguage="python"
-          defaultValue={code} // Minor: Can be removed if 'value' is always used
+          defaultValue={code} 
           value={code}
           onChange={(val) => setCode(val || "")}
-          theme="vs-dark" // This should give dark background and LIGHT text
+          theme="light" 
           options={{
             fontSize: 16,
             minimap: { enabled: false },
             scrollBeyondLastLine: false,
-            automaticLayout: true, // Good for responsive sizing
+            automaticLayout: true, 
           }}
         />
       </div>
