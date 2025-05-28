@@ -1,6 +1,12 @@
 # fleetcode
 
-A full-stack application blending a React frontend and Python FastAPI backend for collaborative coding, competitive programming, or coding interview-style practice. This repository is organized into two main parts:
+A full-stack application blending a React frontend and Python FastAPI backend for collaborative coding, competitive programming, or coding interview-style practice.
+
+Built during a hackathon, **fleetcode** aims to bring the thrill of real-time 1v1 competitive coding to life — think *LeetCode meets Chess.com*. Whether you're grinding interview prep, battling friends, or building your rating, fleetcode makes it fast, real-time, and fun.  
+
+> No lobbies. No delays. Just code, compete, and climb.
+
+This repository is organized into two main parts:
 
 - **client/** – Frontend (React)
 - **server/** – Backend (FastAPI/Python)
@@ -162,9 +168,3 @@ Contributions are welcome! Please open issues or pull requests via GitHub.
 ## License
 
 Distributed under the MIT License. See [LICENSE](LICENSE) for more information.
-
-<br/>
-
-## Notes
-
-- This README was generated based on the current top-level file structure and may not include every single file or subdirectory. For a full and most up-to-date listing, browse the repository on GitHub.
