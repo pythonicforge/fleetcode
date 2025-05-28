@@ -14,35 +14,45 @@ function Match() {
   const wsRef = useRef(null);
 
   useEffect(() => {
-    if (!user?.id) return;
+    if (!user?.id) {
+      console.warn("User ID missing, cannot open WebSocket");
+      return;
+    }
 
-    const ws = new WebSocket(`${BASE_URL.replace("https", "wss")}/ws/match/${match_id}`);
+    console.log(`Opening WebSocket connection to wss://${BASE_URL.replace(/^https?:\/\//, '')}/ws/match/${match_id}`);
+
+    // Construct WebSocket URL explicitly
+    const wsUrl = `${BASE_URL.replace("https", "wss").replace("http", "ws")}/ws/match/${match_id}`;
+    const ws = new WebSocket(wsUrl);
     wsRef.current = ws;
 
     ws.onopen = () => {
+      console.log("WebSocket connected");
       ws.send(JSON.stringify({ user_id: user.id }));
       setStatus("connected");
     };
 
     ws.onmessage = (event) => {
       const msg = JSON.parse(event.data);
-      console.log("Match WS message:", msg);
+      console.log("Match WS message received:", msg);
       // Add your game logic here
     };
 
     ws.onerror = (err) => {
-      console.error("Match WebSocket error:", err);
+      console.error("Match WebSocket error event:", err);
       setStatus("error");
     };
 
-    ws.onclose = () => {
+    ws.onclose = (event) => {
+      console.log(`WebSocket closed. Code: ${event.code}, Reason: ${event.reason}, WasClean: ${event.wasClean}`);
       setStatus("disconnected");
     };
 
     return () => {
+      console.log("Closing WebSocket connection...");
       ws.close();
     };
-  }, [user, match_id]);
+  }, [user?.id, match_id]);
 
   if (!opponent) {
     return <div>Error: Opponent information is missing.</div>;
