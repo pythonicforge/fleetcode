@@ -8,7 +8,7 @@ import { useUser } from './../client/Usercontext';
 
 const UserProfile = () => {
   const navigate = useNavigate();
-  const { user, profile, loading } = useUser();
+  const { user, profile, setProfile, loading } = useUser();
 
   const [editing, setEditing] = useState(false);
   const [username, setUsername] = useState(profile?.username || '');
@@ -21,22 +21,40 @@ const UserProfile = () => {
     navigate('/');
   };
 
-  const handleSave = async () => {
-    const updates = {
-      id: user.id,
-      username,
-      email,
-      avatar_url: avatarUrl,
-    };
-
-    const { error } = await supabase.from('profiles').update(updates).eq('id', user.id);
-    if (error) {
-      alert('Error saving profile: ' + error.message);
-    } else {
-      alert('Profile updated!');
-      setEditing(false);
-    }
+const handleSave = async () => {
+  const updates = {
+    id: user.id,
+    username,
+    email,
+    avatar_url: avatarUrl,
   };
+
+  const { error } = await supabase.from('profiles').update(updates).eq('id', user.id);
+  if (error) {
+    alert('Error saving profile: ' + error.message);
+    return;
+  }
+
+  // Optional: Fetch updated profile if you want to update local state before reload
+  const { data: updatedProfile, error: fetchError } = await supabase
+    .from('profiles')
+    .select('*')
+    .eq('id', user.id)
+    .single();
+
+  if (fetchError) {
+    alert('Error fetching updated profile: ' + fetchError.message);
+    return;
+  }
+
+  setProfile(updatedProfile);
+  setUsername(updatedProfile.username);
+  setEmail(updatedProfile.email);
+  setAvatarUrl(updatedProfile.avatar_url);
+  setEditing(false);
+  window.location.reload(); // <-- this triggers a full page reload
+};
+
 
   const handleUpload = async (event) => {
     try {
