@@ -7,7 +7,6 @@ const BASE_URL = "https://fleetcode.onrender.com";
 function Matchmaking() {
   const { user } = useUser();
   const [status, setStatus] = useState("idle"); // idle, searching, matched
-  const wsRef = useRef(null);
   const pollingTimeoutRef = useRef(null);
   const navigate = useNavigate();
 
@@ -25,42 +24,20 @@ function Matchmaking() {
 
       if (data.match_id) {
         console.log("Match found:", data.match_id);
-        console.log(`${BASE_URL.replace("https", "wss")}/ws/match/${data.match_id}`)
-        const ws = new WebSocket(`${BASE_URL.replace("https", "wss")}/ws/match/${data.match_id}`);
-        wsRef.current = ws;
-        console.log("WebSocket created for match:", data.match_id);
-        
-        ws.onopen = () => {
-          console.log("WebSocket connection opened for match:", data.match_id);
-          ws.send(JSON.stringify({ user_id: user.id }));
-        };
 
-        ws.onmessage = (event) => {
-          const msg = JSON.parse(event.data);
-          console.log("WebSocket message received:", msg); // Add detailed logging
+        // Extract opponent info from the API response
+        let opponent = null;
+        if (data.player1.id === user.id) {
+          opponent = data.player2;
+        } else {
+          opponent = data.player1;
+        }
 
-          if (msg.status === "matched") {
-            if (!msg.opponent) {
-              console.error("Opponent information is undefined!");
-              setStatus("idle");
-              ws.close();
-              return;
-            }
+        setStatus("matched");
 
-            setStatus("matched");
-            ws.close();
+        // Immediately navigate to match page with opponent info
+        navigate(`/match/${data.match_id}`, { state: { opponent } });
 
-            // Navigate to /match/:match_id passing opponent info in state
-            navigate(`/match/${data.match_id}`, { state: { opponent: msg.opponent } });
-          } else {
-            console.warn("Unexpected WebSocket message:", msg);
-          }
-        };
-
-        ws.onerror = (e) => {
-          console.error("WebSocket error:", e);
-          setStatus("idle");
-        };
       } else if (data.detail) {
         if (data.detail === "Waiting for opponent...") {
           pollingTimeoutRef.current = setTimeout(pollMatch, 3000);
@@ -83,23 +60,14 @@ function Matchmaking() {
       console.error("User ID is undefined!");
       return;
     }
-
     setStatus("searching");
     pollMatch();
   };
 
   const stopQueue = () => {
     setStatus("idle");
-
-    // Clear the polling timeout to stop repeated polling
     if (pollingTimeoutRef.current) {
       clearTimeout(pollingTimeoutRef.current);
-    }
-
-    // Close the WebSocket if open
-    if (wsRef.current) {
-      wsRef.current.close();
-      wsRef.current = null;
     }
   };
 
@@ -111,7 +79,6 @@ function Matchmaking() {
           Join Queue
         </button>
       )}
-
       {status === "searching" && (
         <>
           <button onClick={stopQueue}>Stop Queue</button>
