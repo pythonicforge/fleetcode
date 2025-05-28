@@ -3,6 +3,7 @@ import Dashboard from './components/Dashboard/Dashboard';
 import Hero from './components/Hero/Hero';
 import Navbar from './components/Navbar/Navbar';
 import Signuplogin from './components/Auth/Signuplogin';
+import CodeEditor from './components/CodeEditor';
 import './App.css';
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<Hero />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/auth" element={<Signuplogin />} />
+        <Route path="/code" element={<CodeEditor />} />
       </Routes>
     </>
   );
