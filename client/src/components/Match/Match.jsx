@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
-import { useUser } from './../client/Usercontext'; // adjust path as needed
+import { useUser } from './../client/Usercontext';
 
 const BASE_URL = "https://fleetcode.onrender.com";
 
@@ -8,21 +8,34 @@ function Match() {
   const { user } = useUser();
   const { match_id } = useParams();
   const location = useLocation();
-  const opponent = location.state?.opponent || null;
-
+  const [opponent, setOpponent] = useState(location.state?.opponent || null);
   const [status, setStatus] = useState("connecting");
   const wsRef = useRef(null);
 
+  // Fallback fetch if opponent info is not passed via navigation
   useEffect(() => {
-    if (!user?.id) {
-      console.warn("User ID missing, cannot open WebSocket");
+    if (!opponent && user?.id) {
+      fetch(`${BASE_URL}/match/${match_id}`)
+        .then(res => res.json())
+        .then(data => {
+          const opp = data.player1.id === user.id ? data.player2 : data.player1;
+          setOpponent(opp);
+        })
+        .catch(err => {
+          console.error("Failed to fetch match info:", err);
+        });
+    }
+  }, [opponent, user?.id, match_id]);
+
+  // WebSocket setup
+  useEffect(() => {
+    if (!user?.id || !opponent) {
+      console.warn("User or opponent missing, WebSocket not opened.");
       return;
     }
 
-    console.log(`Opening WebSocket connection to wss://${BASE_URL.replace(/^https?:\/\//, '')}/ws/match/${match_id}`);
-
-    // Construct WebSocket URL explicitly
     const wsUrl = `${BASE_URL.replace("https", "wss").replace("http", "ws")}/ws/match/${match_id}`;
+    console.log(`Opening WebSocket connection to ${wsUrl}`);
     const ws = new WebSocket(wsUrl);
     wsRef.current = ws;
 
@@ -35,7 +48,6 @@ function Match() {
     ws.onmessage = (event) => {
       const msg = JSON.parse(event.data);
       console.log("Match WS message received:", msg);
-      // Add your game logic here
     };
 
     ws.onerror = (err) => {
@@ -52,10 +64,10 @@ function Match() {
       console.log("Closing WebSocket connection...");
       ws.close();
     };
-  }, [user?.id, match_id]);
+  }, [user?.id, match_id, opponent]);
 
   if (!opponent) {
-    return <div>Error: Opponent information is missing.</div>;
+    return <div>Loading opponent information...</div>;
   }
 
   return (
@@ -63,8 +75,6 @@ function Match() {
       <h2>Match ID: {match_id}</h2>
       <h3>Playing against: {opponent.username || opponent.id}</h3>
       <p>Status: {status}</p>
-
-      {/* Your game UI here */}
     </div>
   );
 }

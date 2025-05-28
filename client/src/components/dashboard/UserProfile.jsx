@@ -12,7 +12,6 @@ const UserProfile = () => {
 
   const [editing, setEditing] = useState(false);
   const [username, setUsername] = useState(profile?.username || '');
-  const [email, setEmail] = useState(profile?.email || '');
   const [avatarUrl, setAvatarUrl] = useState(profile?.avatar_url || '');
   const [uploading, setUploading] = useState(false);
 
@@ -21,40 +20,35 @@ const UserProfile = () => {
     navigate('/');
   };
 
-const handleSave = async () => {
-  const updates = {
-    id: user.id,
-    username,
-    email,
-    avatar_url: avatarUrl,
+  const handleSave = async () => {
+    const updates = {
+      id: user.id,
+      username,
+      avatar_url: avatarUrl,
+    };
+
+    const { error } = await supabase.from('profiles').update(updates).eq('id', user.id);
+    if (error) {
+      alert('Error saving profile: ' + error.message);
+      return;
+    }
+
+    const { data: updatedProfile, error: fetchError } = await supabase
+      .from('profiles')
+      .select('*')
+      .eq('id', user.id)
+      .single();
+
+    if (fetchError) {
+      alert('Error fetching updated profile: ' + fetchError.message);
+      return;
+    }
+
+    setProfile(updatedProfile);
+    setUsername(updatedProfile.username);
+    setAvatarUrl(updatedProfile.avatar_url);
+    setEditing(false);
   };
-
-  const { error } = await supabase.from('profiles').update(updates).eq('id', user.id);
-  if (error) {
-    alert('Error saving profile: ' + error.message);
-    return;
-  }
-
-  // Optional: Fetch updated profile if you want to update local state before reload
-  const { data: updatedProfile, error: fetchError } = await supabase
-    .from('profiles')
-    .select('*')
-    .eq('id', user.id)
-    .single();
-
-  if (fetchError) {
-    alert('Error fetching updated profile: ' + fetchError.message);
-    return;
-  }
-
-  setProfile(updatedProfile);
-  setUsername(updatedProfile.username);
-  setEmail(updatedProfile.email);
-  setAvatarUrl(updatedProfile.avatar_url);
-  setEditing(false);
-
-};
-
 
   const handleUpload = async (event) => {
     try {
@@ -163,14 +157,6 @@ const handleSave = async () => {
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-            />
-          </label>
-          <label>
-            Change Email 
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
             />
           </label>
           <label>
