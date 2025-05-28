@@ -52,7 +52,7 @@ const handleSave = async () => {
   setEmail(updatedProfile.email);
   setAvatarUrl(updatedProfile.avatar_url);
   setEditing(false);
-  window.location.reload(); // <-- this triggers a full page reload
+
 };
 
 
