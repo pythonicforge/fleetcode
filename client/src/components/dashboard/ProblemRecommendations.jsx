@@ -8,28 +8,25 @@ const ProblemRecommendations = () => {
       title: 'Advanced Binary Search',
       difficulty: 'Medium',
       rating: 1750,
-      
       description: 'Master advanced binary search patterns and edge cases for optimal performance',
-      
-      category: 'Algorithms'
+      category: 'Algorithms',
+      url: 'https://leetcode.com/problems/minimized-maximum-of-products-distributed-to-any-store/description/'
     },
     {
-      title: 'Dynamic Programming Mastery', 
+      title: 'Dynamic Programming Mastery',
       difficulty: 'Hard',
       rating: 1900,
-      
       description: 'Complex DP state transitions and optimization problems with real-world applications',
-      
-      category: 'Dynamic Programming'
+      category: 'Dynamic Programming',
+      url: 'https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/description/'
     },
     {
       title: 'Graph Theory Fundamentals',
       difficulty: 'Medium',
       rating: 1650,
-      
       description: 'Essential graph algorithms and traversal methods for competitive programming',
-      
-      category: 'Graph Theory'
+      category: 'Graph Theory',
+      url: 'https://leetcode.com/problems/graph-connectivity-with-threshold/description/'
     }
   ];
 
@@ -45,7 +42,7 @@ const ProblemRecommendations = () => {
           <span className="problem-recommendations__tag-text">Personalized for you</span>
         </span>
       </div>
-      
+
       <div className="problem-recommendations__list">
         {problems.map((problem, index) => (
           <div key={index} className="problem-recommendations__item">
@@ -56,9 +53,9 @@ const ProblemRecommendations = () => {
                   {problem.category}
                 </div>
               </div>
-              
+
               <p className="problem-recommendations__description">{problem.description}</p>
-              
+
               <div className="problem-recommendations__meta-row">
                 <div className="problem-recommendations__meta-left">
                   <span className={`problem-recommendations__difficulty-badge problem-recommendations__difficulty-badge--${problem.difficulty.toLowerCase()}`}>
@@ -70,21 +67,24 @@ const ProblemRecommendations = () => {
                   </div>
                   <div className="problem-recommendations__time">
                     <Clock className="problem-recommendations__clock-icon" />
-                    
                   </div>
                 </div>
                 <div className="problem-recommendations__stats">
                   <Users className="problem-recommendations__users-icon" />
-                 
                 </div>
               </div>
             </div>
-            
-            <button className="problem-recommendations__solve-btn">
+
+            <a
+              href={problem.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="problem-recommendations__solve-btn"
+            >
               <Code className="problem-recommendations__solve-icon" />
               <span>Solve</span>
               <ArrowRight className="problem-recommendations__arrow-icon" />
-            </button>
+            </a>
           </div>
         ))}
       </div>
