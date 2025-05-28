@@ -1,8 +1,18 @@
 import React from 'react';
 import { Trophy, TrendingUp, Target, Flame } from 'lucide-react';
 import './UserProfile.css';
+import { MdLogout } from "react-icons/md";
+import { useNavigate } from 'react-router-dom';
+import supabase from './../client/supabaseclient';
 
 const UserProfile = () => {
+  const navigate = useNavigate();
+
+  const logout = async () => {
+    await supabase.auth.signOut();
+    navigate('/');
+  };
+
   return (
     <div className="user-profile">
       <div className="user-profile__header">
@@ -13,11 +23,22 @@ const UserProfile = () => {
           <div className="user-profile__online-indicator"></div>
         </div>
         <div className="user-profile__info">
-          <h3 className="user-profile__name">CodeMaster</h3>
-          <div className="user-profile__badges">
-            <div className="user-profile__elite-badge">Elite</div>
-            <span className="user-profile__rank-text">Rank #42</span>
+          <div>     
+            <h3 className="user-profile__name">
+              CodeMaster
+            </h3>
+            <div className="user-profile__badges">
+              <div className="user-profile__elite-badge">Elite</div>
+              <span className="user-profile__rank-text">Rank #42</span>
+            </div>
           </div>
+        </div>
+        <div 
+          style={{ marginLeft: '1rem', fontSize: '2rem', cursor: 'pointer' }} 
+          onClick={logout}
+          title="Logout"
+        >
+          <MdLogout />
         </div>
       </div>
       
