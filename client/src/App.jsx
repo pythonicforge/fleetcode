@@ -28,7 +28,6 @@ function App() {
             </ProtectedRoute>
           }
         />
-        {/* Redirect logged-in users away from login/signup */}
         <Route
           path="/login"
           element={user ? <Navigate to="/dashboard" /> : <Login />}

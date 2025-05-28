@@ -10,19 +10,31 @@ def run_python_code(source_code: str, stdin: str = ""):
             timeout=5  # seconds limit to avoid infinite loops
         )
         return {
-            "stdout": proc.stdout.decode("utf-8"),
-            "stderr": proc.stderr.decode("utf-8"),
-            "returncode": proc.returncode,
-        }
+    "stdout": proc.stdout.decode("utf-8"),
+    "stderr": proc.stderr.decode("utf-8"),
+    "returncode": proc.returncode,
+    "status": None,
+    "time": None,
+    "memory": None
+}
+
     except subprocess.TimeoutExpired:
         return {
-            "stdout": "",
-            "stderr": "Error: Code execution timed out",
-            "returncode": -1,
-        }
+    "stdout": "",
+    "stderr": "Error: Code execution timed out",
+    "returncode": -1,
+    "status": None,
+    "time": None,
+    "memory": None
+}
+
     except Exception as e:
         return {
-            "stdout": "",
-            "stderr": f"Error: {str(e)}",
-            "returncode": -1,
-        }
+    "stdout": "",
+    "stderr": f"Error: {str(e)}",
+    "returncode": -1,
+    "status": None,
+    "time": None,
+    "memory": None
+}
+
