@@ -1,17 +1,19 @@
 import { useState } from "react";
 import Editor from "@monaco-editor/react";
-import axios from "axios"; // Not directly relevant to text visibility
+import axios from "axios";
 
-export default function CodeEditor() {
+export default function CodeEditor({ userId, matchId }) {
   const [code, setCode] = useState("print('Hello, world!')");
   const [output, setOutput] = useState("");
   const [status, setStatus] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async () => {
+    setIsSubmitting(true);
     try {
       const response = await axios.post("http://localhost:8000/submission/submit", {
-        user_id: "c17c684e-2691-43a6-8c76-4bf6bae8c39c",
-        match_id: "1bcdbe08-9c48-45f5-a230-6f9bd6717b9b",
+        user_id: userId,
+        match_id: matchId,
         language: "python",
         code
       });
@@ -22,42 +24,39 @@ export default function CodeEditor() {
       setStatus("Error");
       setOutput("Something went wrong :(");
       console.error("Error:", err);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
- return (
+  return (
     <div
       style={{
         height: "100vh",
         width: "100vw",
         display: "flex",
         flexDirection: "column",
-        backgroundColor: "#1e1e1e", 
-        color: "#fff",             
+        backgroundColor: "#1e1e1e",
+        color: "#fff",
       }}
     >
-      
-      <div style={{ flex: 1 }}> 
+      <div style={{ flex: 1 }}>
         <Editor
           height="100%"
           defaultLanguage="python"
-          defaultValue={code} 
+          defaultValue={code}
           value={code}
           onChange={(val) => setCode(val || "")}
-          theme="vs-dark" 
+          theme="vs-dark"
           options={{
             fontSize: 16,
             minimap: { enabled: false },
             scrollBeyondLastLine: false,
-            automaticLayout: true, 
+            automaticLayout: true,
           }}
         />
       </div>
 
-
-      
-
-      
       <div
         style={{
           padding: "1vh",
@@ -68,6 +67,7 @@ export default function CodeEditor() {
       >
         <button
           onClick={handleSubmit}
+          disabled={isSubmitting}
           style={{
             backgroundColor: "#10b981",
             padding: "1.5vh 3vw",
@@ -76,10 +76,10 @@ export default function CodeEditor() {
             fontWeight: "bold",
             border: "none",
             borderRadius: "1vh",
-            cursor: "pointer"
+            cursor: isSubmitting ? "not-allowed" : "pointer",
           }}
         >
-          SUBMIT T^T
+          {isSubmitting ? "Submitting..." : "SUBMIT T^T"}
         </button>
       </div>
 
@@ -91,10 +91,15 @@ export default function CodeEditor() {
           borderTop: "1px solid #333",
           maxHeight: "30vh",
           overflowY: "auto",
-          whiteSpace: "pre-wrap"
+          whiteSpace: "pre-wrap",
         }}
       >
-        <h3 style={{ margin: 0 }}>Verdict: <span style={{ color: status === "Passed" ? "#10b981" : "#ef4444" }}>{status}</span></h3>
+        <h3 style={{ margin: 0 }}>
+          Verdict:{" "}
+          <span style={{ color: status === "Passed" ? "#10b981" : "#ef4444" }}>
+            {status}
+          </span>
+        </h3>
         <code>{output}</code>
       </div>
     </div>
