@@ -38,12 +38,16 @@ async def find_match(user_id: str) -> Match | None:
     user = await get_user_by_id(user_id)
     user_rating = user.rating
 
+    print(f"User {user_id} with rating {user_rating} is looking for a match.")
+
     for opponent_id, opponent_rating in waiting_queue.items():
+        print(f"Checking opponent {opponent_id} with rating {opponent_rating}.")
         if abs(opponent_rating - user_rating) <= RATING_RANGE and opponent_id != user_id:
             opponent = await get_user_by_id(opponent_id)
             del waiting_queue[opponent_id]
 
             match_id = str(uuid.uuid4())
+            print(f"Match found: {user_id} vs {opponent_id}, match_id: {match_id}")
 
             problem_id, problem_type = await assign_problem_to_match(match_id, user.rating, opponent.rating)
 
@@ -64,6 +68,7 @@ async def find_match(user_id: str) -> Match | None:
                 "time_limit": time_limit,
             }
 
+            print(f"Saving match data to database: {match_data}")
             supabase.table("matches").insert(match_data).execute()
 
             return Match(
@@ -75,5 +80,6 @@ async def find_match(user_id: str) -> Match | None:
                 time_limit=time_limit
             )
 
+    print(f"No match found for user {user_id}. Adding to waiting queue.")
     waiting_queue[user_id] = user_rating
     return None

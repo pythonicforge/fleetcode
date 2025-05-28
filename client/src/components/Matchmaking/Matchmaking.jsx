@@ -20,6 +20,7 @@ function Matchmaking() {
 
       const data = await res.json();
       console.log("Matchmaking response data:", data);
+      console.log(data.match_id);
 
       if (data.match_id) {
         console.log("Match found:", data.match_id);

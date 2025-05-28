@@ -49,13 +49,16 @@ async def start_timer(match_id: str):
 @router.websocket("/ws/match/{match_id}")
 async def websocket_endpoint(websocket: WebSocket, match_id: str):
     count = await manager.connect(match_id, websocket)
+    print(f"WebSocket connection established for match_id={match_id}, total_connections={count}")
 
     if count == 2:
+        print(f"Starting timer for match_id={match_id}")
         asyncio.create_task(start_timer(match_id))
 
     try:
         while True:
             data = await websocket.receive_json()
+            print(f"Received WebSocket message for match_id={match_id}: {data}")
             msg_type = data.get("type")
             if msg_type == "status_update":
                 status = StatusUpdate(**data)
@@ -66,4 +69,5 @@ async def websocket_endpoint(websocket: WebSocket, match_id: str):
                 })
             await manager.broadcast(match_id, data, sender=websocket)
     except WebSocketDisconnect:
+        print(f"WebSocket disconnected for match_id={match_id}")
         manager.disconnect(match_id, websocket)
