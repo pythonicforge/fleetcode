@@ -8,7 +8,8 @@ import ProtectedRoute from './Protectedroute';
 import { useUser } from './components/client/Usercontext';
 import CodeEditor from './components/CodeEditor';
 import Matchmaking from './components/Matchmaking/Matchmaking';
-import Match from './components/Match/Match';
+import MatchInterface from './components/Match/Matchinterface';
+
 
 
 import './App.css';
@@ -44,7 +45,8 @@ function App() {
 
         <Route path = "/code" element = {<CodeEditor />} />
         <Route path = "/matchmaking" element = {<Matchmaking />} />
-        <Route path="/match/:match_id" element={<Match />} /> 
+        <Route path="/match/:match_id" element={<MatchInterface />} />
+
 
       </Routes>
     </>
