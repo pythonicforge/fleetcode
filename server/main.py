@@ -16,7 +16,7 @@ app.include_router(match_socket.router)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # 👈 frontend origin
+    allow_origins=["http://localhost:5173", "https://fleetcode.vercel.app"],  # 👈 frontend origin
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
