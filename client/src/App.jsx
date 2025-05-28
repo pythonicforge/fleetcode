@@ -6,6 +6,7 @@ import Login from './components/Auth/Login';
 import Signup from './components/Auth/Signup';
 import ProtectedRoute from './Protectedroute';
 import { useUser } from './components/client/Usercontext';
+import CodeEditor from './components/CodeEditor';
 import './App.css';
 
 function App() {
@@ -36,6 +37,8 @@ function App() {
           path="/signup"
           element={user ? <Navigate to="/dashboard" /> : <Signup />}
         />
+
+        <Route path = "/code" element = {<CodeEditor />} />
       </Routes>
     </>
   );

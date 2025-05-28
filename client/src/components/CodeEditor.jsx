@@ -44,7 +44,7 @@ export default function CodeEditor() {
           defaultValue={code} 
           value={code}
           onChange={(val) => setCode(val || "")}
-          theme="light" 
+          theme="vs-dark" 
           options={{
             fontSize: 16,
             minimap: { enabled: false },
