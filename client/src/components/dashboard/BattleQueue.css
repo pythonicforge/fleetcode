@@ -1,6 +1,5 @@
 .battle-queue {
-  background: #000000;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: #1e1e1e;
   border-radius: 0.75rem;
   padding: 1rem;
   backdrop-filter: blur(8px);
@@ -11,7 +10,6 @@
 
 .battle-queue:hover {
   box-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.3);
 }
 
 .battle-queue__content {
@@ -25,7 +23,7 @@
   gap: 0.5rem;
   font-size: 1.25rem;
   font-weight: bold;
-  color: #ffffff;
+  color: #d0d0d0;
   margin-bottom: 1.5rem;
   flex-wrap: wrap;
 }
@@ -33,7 +31,7 @@
 .battle-queue__title-icon {
   width: 1.25rem;
   height: 1.25rem;
-  color: #ffffff;
+    color: #d0d0d0;
   flex-shrink: 0;
 }
 
@@ -54,8 +52,8 @@
 
 .battle-queue__btn {
   width: 100%;
-  background: #ffffff;
-  color: #000000;
+  background: #262626;
+  color: #d0d0d0;
   font-weight: bold;
   padding: 0.875rem 1.5rem;
   border: none;
@@ -66,9 +64,8 @@
 }
 
 .battle-queue__btn:hover {
-  box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
-  transform: scale(1.05);
-  background: #e0e0e0;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  transform: scale(-0.5px);
 }
 
 .battle-queue__btn-content {
@@ -91,7 +88,7 @@
 .battle-queue__search-icon {
   width: 3rem;
   height: 3rem;
-  background: #ffffff;
+    background: #d0d0d0;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -109,7 +106,7 @@
 
 .battle-queue__search-text {
   font-weight: 600;
-  color: #ffffff;
+    color: #d0d0d0;
   margin-bottom: 0.5rem;
   font-size: 0.875rem;
 }
@@ -121,9 +118,8 @@
 
 .battle-queue__cancel-btn {
   background: #111111;
-  color: #ffffff;
+  color: #d0d0d0;
   padding: 0.5rem 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 0.5rem;
   cursor: pointer;
   transition: all 0.2s;
@@ -145,7 +141,7 @@
 
 .battle-queue__match-title {
   font-weight: bold;
-  color: #ffffff;
+    color: #d0d0d0;
   margin-bottom: 1rem;
   font-size: 1rem;
 }
@@ -168,7 +164,7 @@
 .battle-queue__player-avatar {
   width: 2.5rem;
   height: 2.5rem;
-  background: #ffffff;
+  background: #d0d0d0;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -191,7 +187,7 @@
 
 .battle-queue__player-name {
   font-size: 0.75rem;
-  color: #ffffff;
+    color: #d0d0d0;
   margin-bottom: 0.25rem;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -210,14 +206,14 @@
 .battle-queue__vs-text {
   font-size: 1.25rem;
   font-weight: bold;
-  color: #ffffff;
+    color: #d0d0d0;
   flex-shrink: 0;
 }
 
 .battle-queue__countdown-number {
   font-size: 2.5rem;
   font-weight: bold;
-  color: #ffffff;
+    color: #d0d0d0;
   margin-bottom: 0.5rem;
   animation: pulse 1s infinite;
 }

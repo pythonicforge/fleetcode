@@ -1,6 +1,5 @@
 .recent-battles {
-  background: #000000;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: #1e1e1e;
   border-radius: 0.75rem;
   padding: 1rem;
   backdrop-filter: blur(8px);
@@ -11,7 +10,7 @@
 
 .recent-battles:hover {
   box-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.3);
+  transform: scale(-0.5px);
 }
 
 .recent-battles__header {
@@ -24,7 +23,7 @@
 .recent-battles__header h2 {
   font-size: 1.125rem;
   font-weight: bold;
-  color: #ffffff;
+  color: #dfdfdf;
   margin: 0;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -35,7 +34,7 @@
 .recent-battles__history-icon {
   width: 1.25rem;
   height: 1.25rem;
-  color: #ffffff;
+  color: #b0b0b0;
   flex-shrink: 0;
 }
 
@@ -50,19 +49,17 @@
   align-items: center;
   justify-content: space-between;
   padding: 0.75rem;
-  background: #111111;
+  background: #232323;
   border-radius: 0.5rem;
   transition: all 0.2s;
   cursor: pointer;
-  border: 1px solid rgba(255, 255, 255, 0.05);
   min-width: 0;
   gap: 0.75rem;
 }
 
 .recent-battles__item:hover {
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.2);
-  background: #1a1a1a;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+  background: #2a2a2a;
 }
 
 .recent-battles__info {
@@ -100,7 +97,7 @@
 .recent-battles__opponent {
   font-size: 0.875rem;
   font-weight: 600;
-  color: #ffffff;
+  color: #dfdfdf;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -125,7 +122,7 @@
 .recent-battles__outcome {
   font-size: 0.75rem;
   font-weight: 600;
-  color: #ffffff;
+  color: #dfdfdf;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -149,6 +146,7 @@
 @media (max-width: 768px) {
   .recent-battles {
     padding: 0.75rem;
+    margin-bottom: 30px;
   }
   
   .recent-battles__header h2 {

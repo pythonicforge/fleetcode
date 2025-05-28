@@ -1,17 +1,15 @@
 .user-profile {
-  background: #000000;
-  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 0.75rem;
   padding: 1rem;
   backdrop-filter: blur(8px);
   transition: all 0.3s;
   width: 100%;
   box-sizing: border-box;
+  background-color: #1e1e1e;
 }
 
 .user-profile:hover {
   box-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.3);
 }
 
 .user-profile__header {
@@ -78,8 +76,8 @@
 }
 
 .user-profile__elite-badge {
-  background: #ffffff;
-  color: #000000;
+  background: #cbcbcb;
+  color: #2e2e2e;
   padding: 0.25rem 0.5rem;
   border-radius: 9999px;
   font-size: 0.75rem;
@@ -105,19 +103,17 @@
 }
 
 .user-profile__stat-card {
-  background: #111111;
+  background: #262626;
   border-radius: 0.5rem;
   padding: 0.75rem;
   text-align: center;
   transition: all 0.2s;
-  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .user-profile__stat-card:hover {
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
+  transform: translateY(-0.5px);
   border-color: rgba(255, 255, 255, 0.2);
-  background: #1a1a1a;
 }
 
 .user-profile__stat-icon {
@@ -125,7 +121,7 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 0.5rem;
-  color: #ffffff;
+  color: #8a8a8a;
 }
 
 .user-profile__stat-icon svg {
@@ -155,8 +151,8 @@
 
 .user-profile__edit-btn {
   width: 100%;
-  background: #ffffff;
-  color: #000000;
+  background: #262626;
+  color: #d0d0d0;
   font-weight: 600;
   padding: 0.75rem 1rem;
   border: none;
@@ -168,8 +164,7 @@
 
 .user-profile__edit-btn:hover {
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-  transform: scale(1.02);
-  background: #e0e0e0;
+  transform: scale(-0.5px);
 }
 
 @keyframes pulse {
