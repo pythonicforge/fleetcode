@@ -31,18 +31,29 @@ function Matchmaking() {
         console.log("WebSocket created for match:", data.match_id);
         
         ws.onopen = () => {
+          console.log("WebSocket connection opened for match:", data.match_id);
           ws.send(JSON.stringify({ user_id: user.id }));
-        
         };
 
         ws.onmessage = (event) => {
           const msg = JSON.parse(event.data);
+          console.log("WebSocket message received:", msg); // Add detailed logging
+
           if (msg.status === "matched") {
+            if (!msg.opponent) {
+              console.error("Opponent information is undefined!");
+              setStatus("idle");
+              ws.close();
+              return;
+            }
+
             setStatus("matched");
             ws.close();
 
             // Navigate to /match/:match_id passing opponent info in state
             navigate(`/match/${data.match_id}`, { state: { opponent: msg.opponent } });
+          } else {
+            console.warn("Unexpected WebSocket message:", msg);
           }
         };
 
