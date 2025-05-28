@@ -25,18 +25,15 @@ function Matchmaking() {
       if (data.match_id) {
         console.log("Match found:", data.match_id);
 
-        // Extract opponent info from the API response
-        let opponent = null;
-        if (data.player1.id === user.id) {
-          opponent = data.player2;
-        } else {
-          opponent = data.player1;
-        }
-
         setStatus("matched");
 
-        // Immediately navigate to match page with opponent info
-        navigate(`/match/${data.match_id}`, { state: { opponent } });
+        // Navigate with full match object and userId
+        navigate(`/match/${data.match_id}`, {
+          state: {
+            match: data,
+            userId: user.id
+          }
+        });
 
       } else if (data.detail) {
         if (data.detail === "Waiting for opponent...") {
