@@ -7,6 +7,10 @@ import Signup from './components/Auth/Signup';
 import ProtectedRoute from './Protectedroute';
 import { useUser } from './components/client/Usercontext';
 import CodeEditor from './components/CodeEditor';
+import Matchmaking from './components/Matchmaking/Matchmaking';
+import Match from './components/Match/Match';
+
+
 import './App.css';
 
 function App() {
@@ -39,6 +43,9 @@ function App() {
         />
 
         <Route path = "/code" element = {<CodeEditor />} />
+        <Route path = "/matchmaking" element = {<Matchmaking />} />
+        <Route path="/match/:match_id" element={<Match />} /> 
+
       </Routes>
     </>
   );
