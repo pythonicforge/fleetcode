@@ -45,7 +45,6 @@ This repository is organized into two main parts:
 │   ├── utils/   # Utility modules
 │   └── ...      # main.py, requirements.txt, etc.
 ├── README.md
-└── .DS_Store
 ```
 
 <br/>
