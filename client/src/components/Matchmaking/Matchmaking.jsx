@@ -13,7 +13,7 @@ function Matchmaking() {
 
   const pollMatch = async () => {
     try {
-      const res = await fetch(`${BASE_URL}/match/find`, {
+      const res = await fetch(⁠ ${BASE_URL}/match/find ⁠, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ user_id: user.id }),
@@ -21,13 +21,18 @@ function Matchmaking() {
 
       const data = await res.json();
       console.log("Matchmaking response data:", data);
+      console.log(data.match_id);
 
       if (data.match_id) {
-        const ws = new WebSocket(`${BASE_URL.replace("https", "wss")}/ws/match/${data.match_id}`);
+        console.log("Match found:", data.match_id);
+        console.log(${BASE_URL.replace("https", "wss")}/ws/match/${data.match_id})
+        const ws = new WebSocket(⁠ ${BASE_URL.replace("https", "wss")}/ws/match/${data.match_id} ⁠);
         wsRef.current = ws;
-
+        console.log("WebSocket created for match:", data.match_id);
+        
         ws.onopen = () => {
           ws.send(JSON.stringify({ user_id: user.id }));
+        
         };
 
         ws.onmessage = (event) => {
@@ -37,7 +42,7 @@ function Matchmaking() {
             ws.close();
 
             // Navigate to /match/:match_id passing opponent info in state
-            navigate(`/match/${data.match_id}`, { state: { opponent: msg.opponent } });
+            navigate(⁠ /match/${data.match_id} ⁠, { state: { opponent: msg.opponent } });
           }
         };
 
