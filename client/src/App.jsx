@@ -20,7 +20,7 @@ function App() {
   element={user ? <Navigate to="/dashboard" /> : <Hero />}
 />
 
-        {/* Protect dashboard */}
+ {/* Protect dashboard */}
         <Route
           path="/dashboard"
           element={
