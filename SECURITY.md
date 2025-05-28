@@ -5,7 +5,7 @@
 If you discover a security vulnerability in **fleetcode**, please help us keep the community safe by following these steps:
 
 - **Do not create a public issue or pull request** for security-related matters.  
-- Instead, email the maintainers directly at: **pythonicforge@gmail.com**  
+- Instead, email the maintainers directly at: **teampakkaplacement@gmail.com**  
 - Please provide as much detail as possible, including:
   - A description of the vulnerability
   - Steps to reproduce (if applicable)
