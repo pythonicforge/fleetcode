@@ -1,111 +1,92 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { useUser } from './../client/Usercontext';
+import React, { useState, useRef } from 'react';
+import { useUser } from './../client/Usercontext'; // adjust path as needed
 import { useNavigate } from 'react-router-dom';
 
 const BASE_URL = "https://fleetcode.onrender.com";
 
 function Matchmaking() {
-    const { user } = useUser();
-    const [status, setStatus] = useState("idle"); // idle, searching, matched
-    const [error, setError] = useState(null);
-    const pollingTimeoutRef = useRef(null);
-    const navigate = useNavigate();
+  const { user } = useUser();
+  const [status, setStatus] = useState("idle"); // idle, searching, matched
+  const pollingTimeoutRef = useRef(null);
+  const navigate = useNavigate();
 
-    // Clean up polling on unmount
-    useEffect(() => {
-        return () => {
-            if (pollingTimeoutRef.current) {
-                clearTimeout(pollingTimeoutRef.current);
-            }
-        };
-    }, []);
+  const pollMatch = async () => {
+    try {
+      const res = await fetch(`${BASE_URL}/match/find`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ user_id: user.id }),
+      });
 
-    const pollMatch = async () => {
-        if (!user?.id) {
-            setError("User not authenticated");
-            setStatus("idle");
-            return;
+      const data = await res.json();
+      console.log("Matchmaking response data:", data);
+      console.log(data.match_id);
+
+      if (data.match_id) {
+        console.log("Match found:", data.match_id);
+
+        // Extract opponent info from the API response
+        let opponent = null;
+        if (data.player1.id === user.id) {
+          opponent = data.player2;
+        } else {
+          opponent = data.player1;
         }
 
-        try {
-            const res = await fetch(`${BASE_URL}/match/find`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ user_id: user.id }),
-            });
+        setStatus("matched");
 
-            // Handle non-OK responses
-            if (!res.ok) {
-                throw new Error(res.statusText || "Failed to find match");
-            }
+        // Immediately navigate to match page with opponent info
+        navigate(`/match/${data.match_id}`, { state: { opponent } });
 
-            const data = await res.json();
-            console.log("Matchmaking response:", data);
-
-            if (data.match_id) {
-                // Match found
-                console.log("Match found:", data.match_id);
-                setStatus("matched");
-
-                // Determine opponent
-                const opponent = data.player1.id === user.id ? data.player2 : data.player1;
-
-                // Navigate to match page
-                navigate(`/match/${data.match_id}`, { 
-                    state: { opponent },
-                    replace: true  // Prevent going back to matchmaking
-                });
-            } else if (data.detail === "Waiting for opponent...") {
-                // Continue polling
-                setStatus("searching");
-                pollingTimeoutRef.current = setTimeout(pollMatch, 3000);
-            } else {
-                // Unexpected response
-                setError(data.detail || "Unexpected response from server");
-                setStatus("idle");
-            }
-        } catch (err) {
-            console.error("Matchmaking error:", err);
-            setError(err.message);
-            setStatus("idle");
-            
-            // Retry after delay if it was a network error
-            if (err.name === "TypeError" || err.name === "NetworkError") {
-                pollingTimeoutRef.current = setTimeout(pollMatch, 5000);
-            }
+      } else if (data.detail) {
+        if (data.detail === "Waiting for opponent...") {
+          pollingTimeoutRef.current = setTimeout(pollMatch, 3000);
+        } else {
+          console.warn("Matchmaking status:", data.detail);
+          setStatus("idle");
         }
-    };
-
-    const joinQueue = () => {
-        setError(null);
-        setStatus("searching");
-        pollMatch();
-    };
-
-    const stopQueue = () => {
+      } else {
+        console.error("Unexpected response:", data);
         setStatus("idle");
-        if (pollingTimeoutRef.current) {
-            clearTimeout(pollingTimeoutRef.current);
-        }
-    };
+      }
+    } catch (err) {
+      console.error("Error during matchmaking:", err);
+      setStatus("idle");
+    }
+  };
 
-    return (
-        <div>
-            <h2>Matchmaking</h2>
-            {error && <div className="error">{error}</div>}
-            
-            {status !== "searching" ? (
-                <button onClick={joinQueue} disabled={!user}>
-                    Join Queue
-                </button>
-            ) : (
-                <>
-                    <button onClick={stopQueue}>Stop Queue</button>
-                    <p>Searching for opponent...</p>
-                </>
-            )}
-        </div>
-    );
+  const joinQueue = () => {
+    if (!user?.id) {
+      console.error("User ID is undefined!");
+      return;
+    }
+    setStatus("searching");
+    pollMatch();
+  };
+
+  const stopQueue = () => {
+    setStatus("idle");
+    if (pollingTimeoutRef.current) {
+      clearTimeout(pollingTimeoutRef.current);
+    }
+  };
+
+  return (
+    <div>
+      <h2>Matchmaking</h2>
+      {status !== "searching" && (
+        <button onClick={joinQueue}>
+          Join Queue
+        </button>
+      )}
+      {status === "searching" && (
+        <>
+          <button onClick={stopQueue}>Stop Queue</button>
+          <p>Waiting for opponent...</p>
+        </>
+      )}
+    </div>
+  );
 }
 
 export default Matchmaking;
